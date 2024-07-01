@@ -1,0 +1,52 @@
+﻿@model InjectionAttacks.Models.UserRegisterViewModel
+
+@{
+    ViewData["Title"] = "RegisterUser";
+}
+
+<h1>RegisterUser</h1>
+
+<h4>UserRegisterViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+ 
+        <form asp-action="RegisterUser">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserInfo" class="control-label"></label>
+                <textarea asp-for="UserInfo" class="form-control"></textarea>
+                <span asp-validation-for="UserInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div>
+    @if (Model is not null)
+    {
+        @Html.Raw(Model.UserInfo);
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
