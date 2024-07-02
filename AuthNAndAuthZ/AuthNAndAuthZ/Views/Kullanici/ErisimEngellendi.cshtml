@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewData["Title"] = "ErisimEngellendi";
+}
+
+<h1>Erişim Engellendi</h1>
+<p>Merhaba @User.Identity.Name</p>
+<p>Bu sayfayı görme yetkiniz bulunmuyor. Çünkü rolünüz, @User.Claims.ToList()[2].Value olarak kayıtlıdır</p>
+

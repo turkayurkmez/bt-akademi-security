@@ -17,6 +17,11 @@ namespace AuthNAndAuthZ.Services
             return users.SingleOrDefault(x => x.UserName == username && x.Password == password);
         }
 
+        public void CreateUser(CreateNewUserModel model)
+        {
+
+        }
+
 
     }
 }

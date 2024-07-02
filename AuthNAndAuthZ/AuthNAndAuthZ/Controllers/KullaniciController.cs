@@ -16,6 +16,8 @@ namespace AuthNAndAuthZ.Controllers
             this.userService = userService;
         }
 
+      
+
         public IActionResult Giris(string? gidilecekAdres)
         {
             UserLoginViewModel userLoginViewModel = new UserLoginViewModel() { ReturnUrl = gidilecekAdres };
@@ -50,6 +52,29 @@ namespace AuthNAndAuthZ.Controllers
                 }
                 ModelState.AddModelError("login", "Login Failed");
 
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task< IActionResult> Cikis()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
+
+        public IActionResult ErisimEngellendi() => View();
+
+        public IActionResult Kayit()
+        {
+            return View();
+        }
+
+        public IActionResult Kayit(CreateNewUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //userService.
             }
             return View();
         }
