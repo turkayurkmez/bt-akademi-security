@@ -1,4 +1,5 @@
 using DataProtectionOnServer.Models;
+using DataProtectionOnServer.Security;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,11 @@ namespace DataProtectionOnServer.Controllers
 
         public IActionResult Index()
         {
+            string secret = "Çok gizli cümle!";
+            DataProtector dataProtector = new DataProtector("info.txt");
+            var length =  dataProtector.EncryptData(secret);
+
+            ViewBag.ClearValue = dataProtector.DecryptData(length);
             return View();
         }
 
