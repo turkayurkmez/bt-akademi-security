@@ -65,16 +65,20 @@ namespace AuthNAndAuthZ.Controllers
 
         public IActionResult ErisimEngellendi() => View();
 
+
         public IActionResult Kayit()
         {
             return View();
         }
 
+        [HttpPost]
         public IActionResult Kayit(CreateNewUserModel model)
         {
+            
             if (ModelState.IsValid)
             {
-                //userService.
+                userService.CreateUser(model);
+                return Redirect("/");
             }
             return View();
         }

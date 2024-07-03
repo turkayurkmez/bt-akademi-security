@@ -9,6 +9,6 @@ namespace AuthNAndAuthZ.Models
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string ClearPassword { get; set; }
-        public string Role { get; set; }
+        //public string? Role { get; set; }
     }
 }

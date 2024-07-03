@@ -1,5 +1,7 @@
+using AuthNAndAuthZ.DataContext;
 using AuthNAndAuthZ.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                     option.AccessDeniedPath = "/Kullanici/ErisimEngellendi";
                 });
 
-builder.Services.AddScoped<IUserService, UserService>();
+var connectionString = builder.Configuration.GetConnectionString("db");
+builder.Services.AddDbContext<SecureDbContext>(opt => opt.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IUserService, RealUserService>();
                 
 var app = builder.Build();
 
